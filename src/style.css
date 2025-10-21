@@ -1,0 +1,761 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: white;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem 4rem;
+  z-index: 1000;
+  box-sizing: border-box;
+  color: rgb(17, 24, 39);
+}
+
+.nav-container {
+  max-width: 1125px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 1.8rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideDown 0.6s ease-out forwards;
+  text-decoration: none;
+  color: rgb(17, 24, 39);
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideDown 0.6s ease-out forwards;
+}
+.nav-links a {
+  text-decoration: none;
+  color: rgb(17, 24, 39);
+  font-weight: 500;
+}
+.icons {
+  display: flex;
+  gap: 1.175rem;
+}
+.icons a {
+  opacity: 0;
+  transform: scaleX(0);
+  display: inline-block;
+  animation: expandIn 0.3s ease-out forwards;
+}
+.icons a:nth-child(1) {
+  animation-delay: 0.0s;
+}
+.icons a:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.icons a:nth-child(3) {
+  animation-delay: 0.8s;
+}
+.icons img {
+  width: 20px;
+  height: 20px;
+}
+section {
+  padding: 100px 20px;
+  min-height: 50vh;
+}
+#about {
+  display: flex;
+  flex-direction: row; /* default: side-by-side layout */
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px; /* add some horizontal padding */
+  max-width: 1150px; /* maximum width to stop it getting too large */
+  margin: 0 auto; /* centers the section */
+  gap: 8.5rem;
+  color: rgb(9, 9, 11);
+}
+
+.about-left {
+  max-width: 60%;
+}
+
+.about-right {
+  width: 40%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px;
+  color: #888;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.about-right img {
+  width: 175%;
+  height: auto;
+}
+
+.text-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Provides consistent spacing between children */
+}
+
+/* Title (h1) styles */
+.text-left h1 {
+  margin: 0; /* Reset default margin */
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  #about {
+    flex-direction: column; /* stack items vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    text-align: center; /* centers text inside the section */
+  }
+  
+  .about-left,
+  .about-right {
+    max-width: 90%; /* ensure content doesn't span too wide */
+    width: 100%;
+  }
+  
+  /* Allow the right section to adjust its height automatically */
+  .about-right {
+    display: none;
+  }
+
+  .about-tags {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.about-tags {
+  display: flex;
+  gap: 1rem;
+  margin: 0rem 0;
+  flex-wrap: wrap;
+}
+.about-tag {
+  background-color: #f0f0f0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+}
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes expandIn {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+@keyframes wave {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(20deg);
+  }
+}
+.animate-rotate {
+  animation: wave 1s infinite alternate ease-in-out;
+  display: inline-block;
+  transform-origin: 70% 70%;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .nav-links,
+  nav .icons {
+    display: none; /* Hide the regular nav items */
+  }
+  
+  .hamburger {
+    display: flex; /* Show hamburger on mobile */
+  }
+}
+
+/* Hamburger styles */
+.hamburger {
+  display: none; /* Only show on mobile */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: rgb(17, 24, 39);
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 0 4rem;
+  /* Adjusted box-shadow to only show on the bottom */
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  pointer-events: none;
+}
+
+.mobile-menu.active {
+  padding: 1rem 4rem;
+  max-height: 500px; /* adjust based on content */
+  pointer-events: auto;
+}
+
+/* Mobile nav links layout & animation */
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5em;
+}
+.mobile-nav-links a {
+  text-decoration: none;
+  color: rgb(17, 24, 39);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideRight 0.6s ease-out forwards;
+}
+.mobile-nav-links a:nth-child(1) { animation-delay: 0s; }
+.mobile-nav-links a:nth-child(2) { animation-delay: 0.2s; }
+.mobile-nav-links a:nth-child(3) { animation-delay: 0.4s; }
+.mobile-nav-links a:nth-child(4) { animation-delay: 0.6s; }
+
+/* Mobile icons layout & animation */
+.mobile-icons {
+  display: flex;
+  gap: 1.175rem;
+}
+.mobile-icons a {
+  opacity: 0;
+  transform: scaleX(0);
+  display: inline-block;
+  animation: expandIn 0.3s ease-out forwards;
+}
+.mobile-icons a:nth-child(1) { animation-delay: 0s; }
+.mobile-icons a:nth-child(2) { animation-delay: 0.4s; }
+.mobile-icons a:nth-child(3) { animation-delay: 0.8s; }
+
+/* Keyframes for left-to-right animation */
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Existing animations remain unchanged */
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes expandIn {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+@keyframes wave {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(20deg);
+  }
+}
+.animate-rotate {
+  animation: wave 1s infinite alternate ease-in-out;
+  display: inline-block;
+  transform-origin: 70% 70%;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .nav-links,
+  nav .icons {
+    display: none; /* Hide the regular nav items on mobile */
+  }
+  
+  .hamburger {
+    display: flex; /* Show hamburger on mobile */
+  }
+}
+
+/* Pinned element spans full width */
+#bio {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 2rem;
+  color: rgb(18, 18, 18);
+}
+
+/* Inner container for content width control */
+.bio-content {
+  width: 40%;  /* Adjust as needed */
+  text-align: center;
+}
+
+/* Adjust for mobile if necessary */
+@media (max-width: 768px) {
+  .bio-content {
+    width: 90%;
+  }
+}
+
+/* 1) Zoom Section (white background, pinned heading) */
+#projects-zoom {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white; /* Initially white so black text is visible */
+  overflow: hidden;  /* Hide overflow during scaling */
+}
+
+.zoom-title {
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgb(18, 18, 18);
+  text-align: center;
+  margin: 0;
+}
+
+/* 2) Projects Main Content (black background after zoom) */
+#projects {
+  background-color: rgb(18, 18, 18);
+  color: white; /* Text in white for readability */
+}
+
+/* Center and style the sub-header text */
+.projects-header {
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+}
+
+.projects-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.projects-header p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+/* 3) Projects list and cards layout */
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 2rem;
+  max-width: 903px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: rgb(24, 24, 27); /* Slightly lighter or navy-hinted black */
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+/* Project card elements */
+.project-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: fill; /* stretches the image to fit the box */
+  border-radius: 4px;
+}
+
+.project-card h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  margin: 0;
+}
+
+.project-card p {
+  margin: 0;
+  margin-bottom: 20px;
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Skills and links */
+.skills {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#experience .skills {
+  margin-top: 7.5%;
+}
+
+.skill-pill {
+  background-color: rgb(39, 39, 42); /* Even lighter black or dark navy for contrast */
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgb(234, 234, 234);
+}
+
+.skill-pill-l {
+  background-color: rgb(234, 234, 234); /* Even lighter black or dark navy for contrast */
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgb(74, 75, 79);
+}
+
+/* 14 slides per page */
+.view-link-l {
+  display: inline-flex;  /* Allows icon + text to sit side by side */
+  align-items: center;   /* Vertically centers the icon and text */
+  margin-top: 0;
+  /* background-color: rgb(234, 234, 234);
+  color: rgb(74, 75, 79); */
+  background-color: rgb(74, 75, 79);
+  color: rgb(234, 234, 234);
+  text-decoration: none;
+  padding: 0.5rem 0.8rem; /* Reduced padding for a smaller pill */
+  border-radius: 5px;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: fit-content;    /* Ensures the pill only grows to its contents */
+}
+
+/* Optional: Some spacing for the icon itself */
+.view-link-l img {
+  margin-right: 0.4rem; 
+  height: 1em; 
+  width: auto; 
+}
+
+.view-link-l:hover {
+  background-color: rgb(109, 110, 114);
+}
+
+.view-link {
+  display: inline-flex;  /* Allows icon + text to sit side by side */
+  align-items: center;   /* Vertically centers the icon and text */
+  margin-top: 0;
+  background-color: white;
+  color: rgb(24, 24, 27);
+  text-decoration: none;
+  padding: 0.5rem 0.8rem; /* Reduced padding for a smaller pill */
+  border-radius: 5px;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: fit-content;    /* Ensures the pill only grows to its contents */
+}
+
+/* Optional: Some spacing for the icon itself */
+.view-link img {
+  margin-right: 0.4rem; 
+  height: 1em; 
+  width: auto; 
+}
+
+.view-link:hover {
+  background-color: #ddd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .zoom-title {
+    font-size: 3rem;
+  }
+  .projects-header h2 {
+    font-size: 2rem;
+  }
+  .project-card {
+    padding: 1rem;
+  }
+}
+
+#contact {
+  display: flex;              /* Use flexbox */
+  flex-direction: column;     /* Stack items vertically */
+  justify-content: space-between; /* Space at top & bottom */
+  align-items: center;        /* Center horizontally */
+  height: 70vh;           /* Full viewport height */
+  background-color: rgb(18, 18, 18);
+  color: white;
+  padding: 6vw;
+  text-align: center;   /* This will center-align text inside as well */
+}
+
+#contact h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: .25rem;
+}
+
+.contact-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #ccc;
+  margin-bottom: 50px;
+  margin-top: 0;
+}
+
+.copyright {
+  margin-top: auto; /* Pushes it to the bottom */
+  margin-bottom: 0rem; /* a little spacing if needed */
+  font-size: 0.8rem;
+  max-width: 700px;
+  color: #ccc;
+}
+
+/* EXPERIENCES */
+
+/* TIMELINE */
+
+.timeline {
+  position: relative;
+  width: 80%;
+  margin: 4rem auto;
+  padding: 2rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  /* Fade at top and bottom via linear gradient */
+  background: linear-gradient(
+    to bottom, 
+    rgba(187, 187, 187, 0),  /* transparent at the very top */
+    rgba(187, 187, 187, 1) 10%, 
+    rgba(187, 187, 187, 1) 90%, 
+    rgba(187, 187, 187, 0)   /* transparent at the very bottom */
+  );
+  transform-origin: top;
+}
+
+/* Common styles for timeline items */
+.timeline-item {
+  position: relative;
+  width: 45%;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background: #fafafa;              /* Light gray background instead of pure white */
+  color: rgb(17, 24, 39);           /* Using your site’s main text color */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  text-align: left;
+  font-size: 1rem;                  /* Adjust size as you like */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: scale(1.02);
+}
+
+.timeline-item.no-cursor {
+  cursor: default; /* or 'auto' */
+}
+
+/* Left items positioned on the left side */
+.timeline-item.left {
+  float: left;
+  clear: both;
+  margin-right: 55%; /* Adjust space so it doesn’t overlap center line */
+}
+
+/* Right items positioned on the right side */
+.timeline-item.right {
+  float: right;
+  clear: both;
+  margin-left: 55%;
+}
+
+/* The connecting line in the middle of each item */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 2px;
+  background: #ccc;
+  border-radius: 0;
+}
+.timeline-item.left::after {
+  right: -6px;
+  transform: translateX(40px);
+}
+.timeline-item.right::after {
+  left: -6px;
+  transform: translateX(-40px);
+}
+
+/* Clear floats at the end of the container */
+.timeline::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Timeline Header (Year + Duration) */
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Make the year big & playful */
+.timeline-header .year {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Make the duration smaller & lighter */
+.timeline-header .duration {
+  font-size: 0.875rem;
+  color: #999;  /* Lighter, less distracting */
+}
+
+/* Example of “unique, playful” colors per item via nth-of-type */
+.timeline-item:nth-of-type(5) .year {
+  color: #e63946; /* Example bright color */
+}
+.timeline-item:nth-of-type(6) .year {
+  color: #f59e0b;
+}
+.timeline-item:nth-of-type(4) .year {
+  color: #10b981;
+}
+.timeline-item:nth-of-type(2) .year {
+  color: #3b82f6;
+}
+.timeline-item:nth-of-type(3) .year {
+  color: #8b5cf6;
+}
+
+.role {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.company {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666; /* Slightly lighter for company name */
+}
+
+.bio {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #444; /* Darker gray for better readability */
+}
+
+.responsibilities {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #444; /* Darker gray for better readability */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .timeline {
+    width: 90%;
+  }
+  .timeline-item {
+    width: 100%;
+    margin: 1.5rem 0;
+    float: none;
+  }
+  .timeline-item::after {
+    left: -6px; /* If you want to keep it aligned or center on mobile */
+    display: none;;
+  }
+  .timeline-line {
+    left: 50%; /* Adjust timeline line position on mobile */
+    height: 90%;
+    transform: translateY(3%);
+  }
+
+  /* Adjust the bigger text a bit on mobile */
+  .timeline-header .year {
+    font-size: 1.5rem;
+  }
+}
