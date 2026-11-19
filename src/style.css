@@ -337,22 +337,37 @@ section {
 #bio {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
   font-size: 2rem;
   color: rgb(18, 18, 18);
 }
 
+#bio h1 {
+  margin: 0;
+  line-height: 1.1;
+}
+
 /* Inner container for content width control */
 .bio-content {
-  width: 40%;  /* Adjust as needed */
+  width: 70%;  /* Matches the published layout */
   text-align: center;
 }
 
 /* Adjust for mobile if necessary */
 @media (max-width: 768px) {
+  #bio {
+    padding: 0 1.25rem;
+    min-height: 100svh;
+  }
   .bio-content {
-    width: 90%;
+    width: 100%;
+    max-width: 100%;
+  }
+  #bio h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.15;
   }
 }
 
@@ -373,6 +388,13 @@ section {
   color: rgb(18, 18, 18);
   text-align: center;
   margin: 0;
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.zoom-char {
+  display: inline-block;
 }
 
 /* 2) Projects Main Content (black background after zoom) */
